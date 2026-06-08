@@ -11,6 +11,8 @@
     packages.nvim-pkg = inputs.wrapper-modules.wrappers.neovim.wrap {
       inherit pkgs; 
 
+      settings.config_directory = ./.;
+
       runtimePkgs = with pkgs; [
         ffmpeg-full
         wl-clipboard
@@ -24,6 +26,10 @@
 
       specs.plugins = {
 	data = with pkgs.vimPlugins; [
+	  lz-n
+          plenary-nvim
+          nvim-lspconfig
+          nvim-treesitter.withAllGrammars
 	];
       };
 

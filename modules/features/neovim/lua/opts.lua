@@ -1,4 +1,4 @@
-local utils = require("kuarma.utils")
+local utils = require("utils")
 
 local opt = vim.opt
 
