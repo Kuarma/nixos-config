@@ -8,7 +8,6 @@
 
       self.nixosModules.neovim
       self.nixosModules.kitty
-      self.nixosModules.brave
       self.nixosModules.git
       self.nixosModules.tmux
     ];
