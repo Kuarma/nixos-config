@@ -22,8 +22,6 @@
         config = "require('init')";
       };
 
-
-
       specs.plugins = {
 	data = with pkgs.vimPlugins; [
 	];

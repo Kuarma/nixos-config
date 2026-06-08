@@ -4,7 +4,6 @@
 
     imports = [
       inputs.nixos-wsl.nixosModules.default
-      inputs.home-manager.nixosModules.default 
 
       self.nixosModules.neovim
       self.nixosModules.kitty
@@ -12,11 +11,7 @@
       self.nixosModules.tmux
     ];
 
-    networking.hostName = "nixdows"; 
-
     nix.settings.experimental-features = [ "nix-command" "flakes" ]; # default
-
-    networking.networkmanager.enable = true; 
 
     time.timeZone = "Europe/Zurich"; 
 
@@ -45,14 +40,6 @@
       isNormalUser = true;
       initialPassword = "changeme";
       extraGroups = [ "networkmanager" "wheel" ];
-    };
-
-    home-manager = {
-      users.wsl = self.homeModules.wslModule;
-      useGlobalPkgs = true;
-      useUserPackages = true;
-      overwriteBackup = true;
-      backupFileExtension = "backup";
     };
 
     environment.systemPackages = with pkgs; [
