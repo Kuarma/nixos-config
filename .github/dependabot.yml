@@ -4,7 +4,7 @@ version: 2
 multi-ecosystem-groups:
   nix-all:
     schedule:
-      interval: weekly
+      interval: daily
 
 updates:
   - package-ecosystem: "nix"
@@ -22,7 +22,7 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "daily"
     groups:
       github-actions:
         patterns:
