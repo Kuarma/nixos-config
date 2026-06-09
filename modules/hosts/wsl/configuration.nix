@@ -36,6 +36,8 @@
     wsl.enable = true;
     wsl.defaultUser = "wsl";
 
+    networking.hostName = "nixdows"; 
+
     users.users.wsl = { 
       isNormalUser = true;
       initialPassword = "changeme";
