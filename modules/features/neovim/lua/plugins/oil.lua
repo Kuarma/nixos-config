@@ -1,7 +1,7 @@
 return {
+  {
   "oil.nvim",
   lazy = false,
-  auto_enable = true;
   after = function()
 require('oil').setup({
     columns = {
@@ -9,6 +9,11 @@ require('oil').setup({
         "permissions",
         "size",
         "mtime",
+    },
+    lsp_file_methods = {
+    enabled = true,
+    timeout_ms = 1000,
+    autosave_changes = true,
     },
     default_file_explorer = true,
     skip_confirm_for_simple_edits = true,
@@ -35,4 +40,8 @@ require('oil').setup({
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set({ "n", "v" }, ".", "<cmd>b#<cr>", { desc = "Go back to last opened buffer" })
 end,
+  },
+  {
+
+  }
 }

@@ -55,8 +55,6 @@
           plenary-nvim
           nvim-nio
 
-          easy-dotnet-nvim
-
           tokyonight-nvim
           nvim-web-devicons
           lualine-nvim
@@ -90,6 +88,8 @@
           trouble-nvim
 
           lazydev-nvim
+
+          easy-dotnet-nvim
 
           telescope-nvim
           telescope-fzf-native-nvim
