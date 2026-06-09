@@ -1,7 +1,10 @@
-{ self, inputs, ... }: {
-
+{
+  self,
+  inputs,
+  ...
+}:
+{
   flake.nixosModules.librewolf = { pkgs, ... }: {
-
     programs.firefox = {
       enable = true;
       package = pkgs.librewolf;
@@ -9,8 +12,8 @@
         DisableTelemetry = true;
         DisableFirefoxStudies = true;
         Preferences = {
-          "cookiebanners.service.mode.privateBrowsing" = 2; 
-          "cookiebanners.service.mode" = 2; 
+          "cookiebanners.service.mode.privateBrowsing" = 2;
+          "cookiebanners.service.mode" = 2;
           "privacy.donottrackheader.enabled" = true;
           "privacy.fingerprintingProtection" = true;
           "privacy.resistFingerprinting" = true;

@@ -2,9 +2,9 @@
 
   flake.homeModules.lunaModule = { pkgs, ... }: {
 
-    imports = [ 
-      self.homeModules.discord 
-    ]; 
+    imports = [
+      self.homeModules.discord
+    ];
 
     home.enableNixpkgsReleaseCheck = false;
 

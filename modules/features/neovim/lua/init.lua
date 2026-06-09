@@ -1,4 +1,4 @@
 require("remap")
 require("opts")
 
-require('lz.n').load('plugins')
+require("lz.n").load("plugins")

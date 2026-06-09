@@ -1,22 +1,33 @@
-{ self, inputs, ... }: {
-
+{
+  self,
+  inputs,
+  ...
+}:
+{
   flake.nixosModules.kitty = { pkgs, lib, ... }: {
     environment.systemPackages = [
       self.packages.${pkgs.stdenv.hostPlatform.system}.kitty-pkg
     ];
   };
 
-  perSystem = { pkgs, lib, self', ... }: {
-    packages.kitty-pkg = inputs.wrapper-modules.wrappers.kitty.wrap {
-      inherit pkgs; 
-      font = {
-	  name = "JetBrainsMono";
-	  size = 11;
-      };
+  perSystem =
+    {
+      pkgs,
+      lib,
+      self',
+      ...
+    }:
+    {
+      packages.kitty-pkg = inputs.wrapper-modules.wrappers.kitty.wrap {
+        inherit pkgs;
+        font = {
+          name = "JetBrainsMono";
+          size = 11;
+        };
 
-      themeFile = "Catppuccin-Mocha";
+        themeFile = "Catppuccin-Mocha";
 
-      settings = {
+        settings = {
           allow_remote_control = true;
           cursor_blink_interval = 0;
           cursor_beam_thickness = 1.5;
@@ -41,7 +52,7 @@
 
           mouse_hide_wait = 5.0;
           hide_window_decorations = true;
+        };
       };
     };
-  };
 }

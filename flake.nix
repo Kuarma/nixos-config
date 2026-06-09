@@ -2,7 +2,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    nixos-hardware.url = "github:NixOS/nixos-hardware"; 
+    nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     import-tree.url = "github:vic/import-tree";
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
@@ -28,7 +28,7 @@
     disko = {
       url = "github:nix-community/disko";
       inputs.nixpkgs.follows = "nixpkgs";
-    }; 
+    };
 
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
@@ -36,7 +36,5 @@
     };
   };
 
-  outputs = inputs: inputs.flake-parts.lib.mkFlake 
-    {inherit inputs;}
-    (inputs.import-tree ./modules);
+  outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } (inputs.import-tree ./modules);
 }

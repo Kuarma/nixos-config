@@ -1,18 +1,18 @@
 return {
-  {
+	{
 		"blink.compat",
 		version = "2.*",
 		lazy = true,
 		opts = {},
 	},
-  {
-    "blink.cmp",
-    version = "1.*",
-    after = function()
-      local colorful_menu = require("colorful-menu")
-      colorful_menu.setup({})
-      
-      require("blink.cmp").setup({
+	{
+		"blink.cmp",
+		version = "1.*",
+		after = function()
+			local colorful_menu = require("colorful-menu")
+			colorful_menu.setup({})
+
+			require("blink.cmp").setup({
 				keymap = {
 					preset = "default",
 					["<Tab>"] = { "select_next", "fallback" },
@@ -25,7 +25,7 @@ return {
 						end,
 					},
 				},
-        signature = {
+				signature = {
 					enabled = true,
 					trigger = {
 						enabled = true,
@@ -186,7 +186,7 @@ return {
 						download = true,
 					},
 				},
-      })
-    end, 
-  }
+			})
+		end,
+	},
 }

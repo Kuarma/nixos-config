@@ -1,12 +1,16 @@
-{ self, inputs, ... }: {
-
-  flake.nixosModules.greetd = {pkgs, lib, ...}: {
+{
+  self,
+  inputs,
+  ...
+}:
+{
+  flake.nixosModules.greetd = { pkgs, lib, ... }: {
     services.greetd = {
       enable = true;
     };
 
     programs.regreet = {
-     enable = true;
+      enable = true;
     };
   };
 }
