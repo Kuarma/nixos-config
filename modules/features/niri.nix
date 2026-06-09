@@ -126,7 +126,7 @@
         binds = {
           "Mod+X".spawn = "kitty";
           "Mod+Space".spawn-sh = "${lib.getExe self'.packages.noctalia-pkg} ipc call launcher toggle";
-          "Mod+B".spawn = "brave";
+          "Mod+B".spawn = "librewolf";
           "Mod+E".spawn = lib.getExe pkgs.nautilus;
 
 	  "Mod+W".close-window = _: { };

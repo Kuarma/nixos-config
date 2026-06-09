@@ -12,14 +12,12 @@
       self.nixosModules.niri
       self.nixosModules.neovim
       self.nixosModules.kitty
-      self.nixosModules.brave
+      self.nixosModules.librewolf
       self.nixosModules.gaming
       self.nixosModules.git
       self.nixosModules.tmux
       self.nixosModules.greetd
     ];
-
-    networking.hostName = "lunix"; # stay
 
     nix.settings.experimental-features = [ "nix-command" "flakes" ]; # default
 
@@ -84,6 +82,8 @@
       extraGroups = [ "networkmanager" "wheel" ];
     };
 
+    networking.hostName = "lunix"; # stay
+
     home-manager = {
       users.luna = self.homeModules.lunaModule;
       useGlobalPkgs = true;
@@ -98,8 +98,8 @@
       btop
     ];
 
-    nixpkgs.config.allowUnfree = true; # nvidia??
+    nixpkgs.config.allowUnfree = true;
 
-    system.stateVersion = "25.11"; # stay
+    system.stateVersion = "25.11";
   };
 }

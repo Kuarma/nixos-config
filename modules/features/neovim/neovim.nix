@@ -21,6 +21,11 @@
         ffmpeg-full
         wl-clipboard
         ripgrep
+
+        nixfmt
+        oxfmt
+        stylua
+        marksman
       ];
 
       specs.init = {

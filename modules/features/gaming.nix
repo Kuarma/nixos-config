@@ -1,11 +1,12 @@
 { self, inputs, ... }: {
 
   flake.nixosModules.gaming = { pkgs, lib, ... }: {
-    nixpkgs.config.allowUnfree = true;
 
     imports = [
       inputs.nix-gaming.nixosModules.pipewireLowLatency
     ];
+
+    nixpkgs.config.allowUnfree = true;
 
     programs = {
       java.enable = true;
