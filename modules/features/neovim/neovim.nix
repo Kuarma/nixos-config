@@ -92,6 +92,7 @@
             nvim-dap-view
             nvim-dap
 
+            lazygit-nvim
             undotree
 
             harpoon2
