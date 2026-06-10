@@ -8,11 +8,28 @@
     programs.neovim = {
       enable = true;
       package = self.packages.${pkgs.stdenv.hostPlatform.system}.nvim-pkg;
+      defaultEditor = true;
+      viAlias = true;
     };
-    environment.systemPackages = with pkgs; [
-      dotnet-runtime
-      dotnet-aspnetcore
-    ];
+
+    environment = {
+      systemPackages = with pkgs; [
+        dotnet-ef
+        (
+          with pkgs.dotnetCorePackages;
+          combinePackages [
+            sdk_8_0
+            sdk_9_0
+            sdk_10_0
+            sdk_11_0
+          ]
+        )
+      ];
+
+      sessionVariables = with pkgs; {
+        DOTNET_ROOT = "${dotnet-sdk}/share/dotnet/";
+      };
+    };
   };
 
   perSystem =
@@ -38,6 +55,8 @@
           oxfmt
           stylua
           marksman
+
+          self.packages.${pkgs.stdenv.hostPlatform.system}.easy-dotnet-server
         ];
 
         specs.init = {
