@@ -4,15 +4,21 @@
   ...
 }:
 {
-  flake.nixosModules.git = { pkgs, lib, ... }: {
-    programs = {
-      git = {
-        enable = true;
-        package = self.packages.${pkgs.stdenv.hostPlatform.system}.git-pkg;
+  flake.nixosModules.git =
+    {
+      pkgs,
+      lib,
+      ...
+    }:
+    {
+      programs = {
+        git = {
+          enable = true;
+          package = self.packages.${pkgs.stdenv.hostPlatform.system}.git-pkg;
+        };
+        lazygit.enable = true;
       };
-      lazygit.enable = true;
     };
-  };
 
   perSystem =
     {

@@ -4,17 +4,20 @@
   ...
 }:
 {
-  flake.nixosModules.kitty = { pkgs, lib, ... }: {
-    environment.systemPackages = [
-      self.packages.${pkgs.stdenv.hostPlatform.system}.kitty-pkg
-    ];
-  };
+  flake.nixosModules.kitty =
+    {
+      pkgs,
+      ...
+    }:
+    {
+      environment.systemPackages = [
+        self.packages.${pkgs.stdenv.hostPlatform.system}.kitty-pkg
+      ];
+    };
 
   perSystem =
     {
       pkgs,
-      lib,
-      self',
       ...
     }:
     {

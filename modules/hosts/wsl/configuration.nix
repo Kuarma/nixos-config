@@ -11,7 +11,7 @@
         inputs.nixos-wsl.nixosModules.default
 
         self.nixosModules.neovim
-        self.nixosModules.kitty
+        self.nixosModules.fastfetch
         self.nixosModules.git
         self.nixosModules.tmux
       ];

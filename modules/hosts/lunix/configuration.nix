@@ -94,7 +94,6 @@
       };
 
       users.users.luna = {
-        # stay
         isNormalUser = true;
         initialPassword = "changeme";
         extraGroups = [

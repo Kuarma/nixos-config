@@ -59,9 +59,6 @@ return {
 			projx_lsp = {
 				enabled = true,
 			},
-			notifications = {
-				handler = nil,
-			},
 			debugger = {
 				-- bin_path = vim.fs.joinpath(vim.fn.stdpath("data"), "mason/bin/netcoredbg"),
 				console = "integratedTerminal",
