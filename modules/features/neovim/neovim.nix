@@ -28,12 +28,20 @@
       };
       environment = {
         systemPackages = with pkgs; [
+          # Nix
+          nixfmt
           nixd
+
+          # CSharp
           dotnet-ef
+          dotnet
+
+          # Treesitter
+          luaPackages.tree-sitter-cli
+
+          # Misc
           fzf
           ripgrep
-          luaPackages.tree-sitter-cli
-          dotnet
         ];
         sessionVariables = {
           DOTNET_ROOT = "${dotnet}";
@@ -63,12 +71,17 @@
           vscode-langservers-extracted
 
           # Formatters
-          nixfmt
           oxfmt
           stylua
+          yamlfmt
+          tex-fmt
+          bibtex-tidy
 
           # Markdown
           marksman
+
+          # Spelling
+          codespell
 
           # Easy-Dotnet
           config.packages.easy-dotnet-server

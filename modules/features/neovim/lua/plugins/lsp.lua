@@ -83,9 +83,6 @@ return {
 						nixpkgs = {
 							expr = "import <nixpkgs> { }",
 						},
-						formatting = {
-							command = { "nixfmt" },
-						},
 						options = {
 							nixos = {
 								expr = "(builtins.getFlake (toString ./.)).nixosConfigurations."
@@ -131,11 +128,18 @@ return {
 				formatters_by_ft = {
 					json = { "oxfmt" },
 					json5 = { "oxfmt" },
+					yaml = { "yamlfmt" },
+					javascript = { "oxfmt" },
 					lua = { "stylua" },
-					md = { "marksman" },
 					cs = { lsp_format = "fallback" },
 					csproj = { lsp_format = "fallback" },
 					nix = { "nixfmt" },
+					tex = { "tex-fmt" },
+					plaintex = { "tex-fmt" },
+					bib = { "bibtex-tidy" },
+
+					["*"] = { "codespell" },
+					["_"] = { "trim_whitespace" },
 				},
 
 				format_on_save = {
