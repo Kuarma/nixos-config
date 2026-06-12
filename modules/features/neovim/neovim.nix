@@ -4,43 +4,47 @@
   ...
 }:
 {
-  flake.nixosModules.neovim = { pkgs, ... }: {
-    programs.neovim = {
-      enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.nvim-pkg;
-      defaultEditor = true;
-      viAlias = true;
-    };
-
-    environment = {
-      systemPackages = with pkgs; [
-        nixd
-        dotnet-ef
-
-        fzf
-        ripgrep
-
-        luaPackages.tree-sitter-cli
-        (
-          with pkgs.dotnetCorePackages;
-          combinePackages [
-            sdk_8_0
-            sdk_9_0
-            sdk_10_0
-            sdk_11_0
-          ]
-        )
-      ];
-
-      sessionVariables = with pkgs; {
-        DOTNET_ROOT = "${dotnet-sdk}/share/dotnet/";
+  flake.nixosModules.neovim =
+    {
+      pkgs,
+      ...
+    }:
+    let
+      dotnet =
+        with pkgs.dotnetCorePackages;
+        combinePackages [
+          sdk_8_0
+          sdk_9_0
+          sdk_10_0
+          sdk_11_0
+        ];
+    in
+    {
+      programs.neovim = {
+        enable = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.nvim-pkg;
+        defaultEditor = true;
+        viAlias = true;
+      };
+      environment = {
+        systemPackages = with pkgs; [
+          nixd
+          dotnet-ef
+          fzf
+          ripgrep
+          luaPackages.tree-sitter-cli
+          dotnet
+        ];
+        sessionVariables = {
+          DOTNET_ROOT = "${dotnet}";
+        };
       };
     };
-  };
 
   perSystem =
     {
       pkgs,
+      config,
       ...
     }:
     {
@@ -67,7 +71,7 @@
           marksman
 
           # Easy-Dotnet
-          self.packages.${pkgs.stdenv.hostPlatform.system}.easy-dotnet-server
+          config.packages.easy-dotnet-server
         ];
 
         specs.init = {

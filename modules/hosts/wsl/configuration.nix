@@ -2,9 +2,7 @@
 
   flake.nixosModules.nixdowsConfig =
     {
-      config,
       pkgs,
-      lib,
       ...
     }:
     {
@@ -21,7 +19,7 @@
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
-      ]; # default
+      ];
 
       time.timeZone = "Europe/Zurich";
 
