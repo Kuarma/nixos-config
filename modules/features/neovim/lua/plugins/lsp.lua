@@ -6,6 +6,13 @@ return {
 		end,
 	},
 	{
+		"vimtex",
+		lazy = false,
+		after = function()
+			vim.g.vimtex_view_method = "zathura"
+		end,
+	},
+	{
 		"lazydev.nvim",
 		ft = "lua",
 		after = function()

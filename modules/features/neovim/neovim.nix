@@ -65,6 +65,11 @@
           # System utilities
           ffmpeg-full
           wl-clipboard
+          biber
+          miktex
+          zathura
+          xdotool
+          pstree
 
           # LSP servers
           lua-language-server
@@ -109,6 +114,9 @@
             colorful-menu-nvim
             lspkind-nvim
             luasnip
+
+            # Latex
+            vimtex
 
             # Core dependencies
             lz-n
