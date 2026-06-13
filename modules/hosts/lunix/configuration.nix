@@ -1,69 +1,40 @@
-{ self, inputs, ... }: {
-
+{
+  self,
+  inputs,
+  ...
+}:
+{
   flake.nixosModules.lunaConfiguration =
     {
-      config,
       pkgs,
-      lib,
       ...
     }:
     {
-
       imports = [
-        inputs.disko.nixosModules.disko
-        self.nixosModules.diskoConfig
-
         inputs.home-manager.nixosModules.default
 
-        self.nixosModules.lunaHardware
+        # System
+        self.nixosModules.nix
+        self.nixosModules.nvidia
         self.nixosModules.niri
+        self.nixosModules.limine
+        self.nixosModules.greetd
+
         self.nixosModules.neovim
         self.nixosModules.kitty
+        self.nixosModules.fastfetch
         self.nixosModules.librewolf
         self.nixosModules.gaming
         self.nixosModules.git
         self.nixosModules.tmux
-        self.nixosModules.greetd
       ];
 
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ]; # default
-
-      boot.loader = {
-        limine = {
-          enable = true;
-        };
-        efi.canTouchEfiVariables = true;
+      networking = {
+        networkmanager.enable = true;
+        hostName = "lunix";
       };
 
-      networking.networkmanager.enable = true; # default
-
-      services.xserver.videoDrivers = [ "nvidia" ]; # nvidia module
-
-      boot = {
-        # nvidia
-        blacklistedKernelModules = [ "nouveau" ];
-        kernelParams = [
-          "nvidia-drm.modeset=1"
-          "kvm-intel"
-          "quiet"
-        ];
-        plymouth.enable = true;
-      };
-
-      hardware.nvidia = {
-        # nvidia
-        modesetting.enable = true;
-        powerManagement.enable = true;
-        powerManagement.finegrained = false;
-        open = false;
-        nvidiaSettings = true;
-        package = config.boot.kernelPackages.nvidiaPackages.stable;
-      };
-
-      time.timeZone = "Europe/Zurich"; # stay
+      time.timeZone = "Europe/Zurich";
 
       i18n = {
         defaultLocale = "en_US.UTF-8";
@@ -81,12 +52,11 @@
         };
       };
 
-      console.keyMap = "sg"; # stay
+      console.keyMap = "sg";
 
-      security.rtkit.enable = true; # stay
+      security.rtkit.enable = true;
 
       services.pipewire = {
-        # stay
         enable = true;
         alsa.enable = true;
         alsa.support32Bit = true;
@@ -102,8 +72,6 @@
         ];
       };
 
-      networking.hostName = "lunix"; # stay
-
       home-manager = {
         users.luna = self.homeModules.lunaModule;
         useGlobalPkgs = true;
@@ -111,14 +79,6 @@
         overwriteBackup = true;
         backupFileExtension = "backup";
       };
-
-      environment.systemPackages = with pkgs; [
-        wget # default
-        unzip
-        btop
-      ];
-
-      nixpkgs.config.allowUnfree = true;
 
       system.stateVersion = "25.11";
     };

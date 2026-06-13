@@ -1,13 +1,19 @@
-{ self, inputs, ... }: {
+{
+  self,
+  ...
+}:
+{
+  flake.homeModules.lunaModule =
+    {
+      ...
+    }:
+    {
+      imports = [
+        self.homeModules.discord
+      ];
 
-  flake.homeModules.lunaModule = { pkgs, ... }: {
+      home.enableNixpkgsReleaseCheck = false;
 
-    imports = [
-      self.homeModules.discord
-    ];
-
-    home.enableNixpkgsReleaseCheck = false;
-
-    home.stateVersion = "26.05";
-  };
+      home.stateVersion = "26.05";
+    };
 }

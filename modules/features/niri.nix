@@ -4,29 +4,34 @@
   ...
 }:
 {
-  flake.nixosModules.niri = { pkgs, lib, ... }: {
-    programs.niri = {
-      enable = true;
-      useNautilus = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri-pkg;
-    };
+  flake.nixosModules.niri =
+    {
+      pkgs,
+      ...
+    }:
+    {
+      programs.niri = {
+        enable = true;
+        useNautilus = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.niri-pkg;
+      };
 
-    services.playerctld.enable = true;
+      services.playerctld.enable = true;
 
-    xdg.portal = {
-      enable = true;
-      extraPortals = with pkgs; [
-        xdg-desktop-portal
-        xdg-desktop-portal-wlr
-        xdg-desktop-portal-gtk
-        xdg-dbus-proxy
-      ];
-      config.common.default = [
-        "gnome"
-        "gtk"
-      ];
+      xdg.portal = {
+        enable = true;
+        extraPortals = with pkgs; [
+          xdg-desktop-portal
+          xdg-desktop-portal-wlr
+          xdg-desktop-portal-gtk
+          xdg-dbus-proxy
+        ];
+        config.common.default = [
+          "gnome"
+          "gtk"
+        ];
+      };
     };
-  };
 
   perSystem =
     {

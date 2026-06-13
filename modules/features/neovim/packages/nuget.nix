@@ -1,4 +1,7 @@
 {
+  ...
+}:
+{
   perSystem =
     {
       pkgs,

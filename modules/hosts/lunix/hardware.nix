@@ -1,10 +1,12 @@
-{ self, inputs, ... }: {
+{
+  ...
+}:
+{
 
   flake.nixosModules.lunaHardware =
     {
       config,
       lib,
-      pkgs,
       modulesPath,
       ...
     }:

@@ -27,10 +27,6 @@
       };
       environment = {
         systemPackages = with pkgs; [
-          # Nix
-          nixfmt
-          nixd
-
           # CSharp
           dotnet
           dotnet-ef

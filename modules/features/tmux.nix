@@ -4,23 +4,26 @@
   ...
 }:
 {
-  flake.nixosModules.tmux = { pkgs, lib, ... }: {
-    programs.tmux = {
-      enable = true;
-      package = self.packages.${pkgs.stdenv.hostPlatform.system}.tmux-pkg;
-    };
+  flake.nixosModules.tmux =
+    {
+      pkgs,
+      ...
+    }:
+    {
+      programs.tmux = {
+        enable = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.tmux-pkg;
+      };
 
-    environment.systemPackages = with pkgs; [
-      bc
-      jq
-    ];
-  };
+      environment.systemPackages = with pkgs; [
+        bc
+        jq
+      ];
+    };
 
   perSystem =
     {
       pkgs,
-      lib,
-      self',
       ...
     }:
     {
