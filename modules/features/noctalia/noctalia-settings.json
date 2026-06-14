@@ -208,7 +208,7 @@
     ]
   },
   "general": {
-    "avatarImage": "/home/luna/Pictures/pfp.png",
+    "avatarImage": "/etc/nixos/modules/features/noctalia/pfp.jpg",
     "dimmerOpacity": 0.2,
     "showScreenCorners": false,
     "forceBlackScreenCorners": false,
@@ -305,7 +305,7 @@
   "wallpaper": {
     "enabled": true,
     "overviewEnabled": false,
-    "directory": "/home/luna/Pictures/Wallpapers",
+    "directory": "/etc/nixos/modules/features/noctalia/Wallpapers/",
     "monitorDirectories": [],
     "enableMultiMonitorDirectories": false,
     "showHiddenFiles": false,

@@ -81,11 +81,11 @@
           # Markdown
           marksman
 
-          # Spelling
-          codespell
-
           # Easy-Dotnet
           config.packages.easy-dotnet-server
+
+          # Spelling
+          codespell
 
           # Dbg CSharp
           netcoredbg
