@@ -1,6 +1,5 @@
 {
   self,
-  inputs,
   ...
 }:
 {
@@ -10,8 +9,6 @@
     }:
     {
       imports = [
-        inputs.home-manager.nixosModules.default
-
         # System
         self.nixosModules.nix
         self.nixosModules.nvidia
@@ -28,9 +25,9 @@
         self.nixosModules.git
         self.nixosModules.tmux
         self.nixosModules.mullvad
+        self.nixosModules.supplementary
+        self.nixosModules.btop
       ];
-
-      services.upower.enable = true;
 
       networking = {
         firewall.enable = true;
@@ -39,6 +36,13 @@
       };
 
       time.timeZone = "Europe/Zurich";
+
+      services = {
+        xserver.xkb.layout = "ch";
+        upower.enable = true;
+      };
+
+      console.keyMap = "sg";
 
       i18n = {
         defaultLocale = "en_US.UTF-8";
@@ -55,10 +59,6 @@
           LC_TIME = "de_CH.UTF-8";
         };
       };
-
-      console.keyMap = "sg";
-
-      services.xserver.xkb.layout = "ch";
 
       users.users.luna = {
         isNormalUser = true;

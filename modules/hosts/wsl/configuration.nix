@@ -1,26 +1,32 @@
-{ self, inputs, ... }: {
+{
+  self,
+  ...
+}:
+{
 
   flake.nixosModules.nixdowsConfig =
     {
-      pkgs,
       ...
     }:
     {
       imports = [
-        inputs.nixos-wsl.nixosModules.default
+        # System
+        self.nixosModules.nix
 
         self.nixosModules.neovim
         self.nixosModules.fastfetch
         self.nixosModules.git
         self.nixosModules.tmux
+        self.nixosModules.btop
       ];
 
-      nix.settings.experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
+      networking.hostName = "nixdows";
 
       time.timeZone = "Europe/Zurich";
+
+      services.xserver.xkb.layout = "ch";
+
+      console.keyMap = "sg";
 
       i18n = {
         defaultLocale = "en_US.UTF-8";
@@ -38,15 +44,11 @@
         };
       };
 
-      console.keyMap = "sg";
-
       wsl = {
         enable = true;
         defaultUser = "wsl";
         useWindowsDriver = true;
       };
-
-      networking.hostName = "nixdows";
 
       users.users.wsl = {
         isNormalUser = true;
@@ -56,12 +58,6 @@
           "wheel"
         ];
       };
-
-      environment.systemPackages = with pkgs; [
-        wget
-        unzip
-        btop
-      ];
 
       system.stateVersion = "26.05";
     };
