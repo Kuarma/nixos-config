@@ -17,6 +17,9 @@
         };
         lazygit.enable = true;
       };
+      environment.systemPackages = [
+        pkgs.git-credential-manager
+      ];
     };
 
   perSystem =
@@ -28,6 +31,9 @@
       packages.git-pkg = inputs.wrapper-modules.wrappers.git.wrap {
         inherit pkgs;
         settings = {
+          credential.helper = "manager";
+          credential.credentialStore = "cache";
+
           init.defaultBranch = "main";
           core = {
             autoSetupRemote = true;
