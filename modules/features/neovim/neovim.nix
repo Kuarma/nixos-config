@@ -13,9 +13,9 @@
       dotnet =
         with pkgs.dotnetCorePackages;
         combinePackages [
-          sdk_8_0
-          sdk_9_0
           sdk_10_0
+          sdk_9_0
+          sdk_8_0
         ];
     in
     {
@@ -31,16 +31,25 @@
           dotnet
           dotnet-ef
 
+          # Node
+          nodejs_22
+
           # Treesitter
           luaPackages.tree-sitter-cli
+
+          # Easy-Dotnet
+          self.packages.${pkgs.stdenv.hostPlatform.system}.easydotnet
 
           # Misc
           fzf
           ripgrep
+          # vscode-langservers-extracted
         ];
+
         sessionVariables = {
-          DOTNET_ROOT = "${dotnet}";
-          DOTNET_HOST_PATH = "${dotnet}/dotnet";
+          DOTNET_ROOT = "${dotnet}/share/dotnet";
+          DOTNET_ROOT_X64 = "${dotnet}/share/dotnet";
+          DOTNET_MULTILEVEL_LOOKUP = "0";
         };
       };
     };
@@ -48,7 +57,6 @@
   perSystem =
     {
       pkgs,
-      config,
       ...
     }:
     {
@@ -69,7 +77,6 @@
 
           # LSP servers
           lua-language-server
-          vscode-langservers-extracted
 
           # Formatters
           oxfmt
@@ -80,9 +87,6 @@
 
           # Markdown
           marksman
-
-          # Easy-Dotnet
-          config.packages.easy-dotnet-server
 
           # Spelling
           codespell
