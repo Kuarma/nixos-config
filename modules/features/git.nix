@@ -17,8 +17,8 @@
         };
         lazygit.enable = true;
       };
-      environment.systemPackages = [
-        pkgs.git-credential-manager
+      environment.systemPackages = with pkgs; [
+        git-credential-manager
       ];
     };
 
@@ -31,7 +31,7 @@
       packages.git-pkg = inputs.wrapper-modules.wrappers.git.wrap {
         inherit pkgs;
         settings = {
-          credential.helper = "manager";
+          credential.helper = "cache --timeout 18200";
           credential.credentialStore = "cache";
 
           init.defaultBranch = "main";
