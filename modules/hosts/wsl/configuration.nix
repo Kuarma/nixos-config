@@ -18,6 +18,7 @@
         self.nixosModules.git
         self.nixosModules.tmux
         self.nixosModules.btop
+        self.nixosModules.supplementary
       ];
 
       networking.hostName = "nixdows";

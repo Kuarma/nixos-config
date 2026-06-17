@@ -80,8 +80,6 @@
 
           # Formatters
           oxfmt
-          stylua
-          yamlfmt
           tex-fmt
           bibtex-tidy
 

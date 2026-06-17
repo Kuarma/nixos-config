@@ -28,12 +28,16 @@
       environment.systemPackages = with pkgs; [
         unzip
 
+        # Formatters
+        stylua
         alejandra
         manix
         nix-inspect
         nixd
         statix
         nixfmt
+        dockerfmt
+        yamlfmt
       ];
     };
 }

@@ -11,7 +11,7 @@
       services.mullvad-vpn = {
         enable = true;
         package = pkgs.mullvad-vpn;
-        enableExcludeWrapper = false;
+        enableExcludeWrapper = true;
       };
     };
 }

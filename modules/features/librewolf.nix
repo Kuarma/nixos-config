@@ -8,9 +8,14 @@
       ...
     }:
     {
+      nixpkgs.config.permittedInsecurePackages = [
+        "librewolf-bin-151.0.1-2"
+        "librewolf-bin-unwrapped-151.0.1-2"
+      ];
+
       programs.firefox = {
         enable = true;
-        package = pkgs.librewolf;
+        package = pkgs.librewolf-bin;
         policies = {
           DisableTelemetry = true;
           DisableFirefoxStudies = true;
