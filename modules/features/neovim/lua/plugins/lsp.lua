@@ -131,15 +131,18 @@ return {
 		event = "BufWritePre",
 		after = function()
 			require("conform").setup({
-				async = true,
+				default_format_opts = {
+					timeout_ms = 3000,
+					async = false,
+					quiet = false,
+					lsp_format = "fallback",
+				},
 				formatters_by_ft = {
 					json = { "oxfmt" },
 					json5 = { "oxfmt" },
 					yaml = { "yamlfmt" },
 					javascript = { "oxfmt" },
 					lua = { "stylua" },
-					cs = { lsp_format = "fallback" },
-					csproj = { lsp_format = "fallback" },
 					nix = { "nixfmt" },
 					tex = { "tex-fmt" },
 					plaintex = { "tex-fmt" },

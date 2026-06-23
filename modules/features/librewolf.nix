@@ -8,10 +8,10 @@
       ...
     }:
     {
-      nixpkgs.config.permittedInsecurePackages = [
-        "librewolf-bin-151.0.1-2"
-        "librewolf-bin-unwrapped-151.0.1-2"
-      ];
+      # nixpkgs.config.permittedInsecurePackages = [
+      #   "librewolf-bin-151.0.1-2"
+      #   "librewolf-bin-unwrapped-151.0.1-2"
+      # ];
 
       programs.firefox = {
         enable = true;
