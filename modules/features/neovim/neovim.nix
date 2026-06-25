@@ -43,7 +43,7 @@
           # Misc
           fzf
           ripgrep
-          # vscode-langservers-extracted
+          vscode-langservers-extracted
         ];
 
         sessionVariables = {

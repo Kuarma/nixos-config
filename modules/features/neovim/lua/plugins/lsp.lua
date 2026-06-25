@@ -124,6 +124,15 @@ return {
 					},
 				},
 			})
+			vim.keymap.set("n", "<leader>dt", function()
+				local state = not vim.diagnostic.config().virtual_text
+				vim.diagnostic.config({ virtual_text = state })
+			end, { desc = "Toggle virtual text" })
+
+			vim.keymap.set("n", "<leader>dl", function()
+				local state = not vim.diagnostic.config().virtual_lines
+				vim.diagnostic.config({ virtual_lines = state })
+			end, { desc = "Toggle virtual lines" })
 		end,
 	},
 	{

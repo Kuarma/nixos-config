@@ -1,7 +1,8 @@
 {
+  #TODO: Add impermanence x3
   inputs = {
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-26.05";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 

@@ -8,6 +8,8 @@
       ...
     }:
     {
+      #TODO: Refactor this stupid config
+      #TODO: Add other addons and more policies
       programs.firefox = {
         enable = true;
         package = pkgs.librewolf;

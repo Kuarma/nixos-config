@@ -1,7 +1,6 @@
 return {
 	{
 		"nvim-dap-virtual-text",
-		-- cmd = "DapText",
 		after = function()
 			require("nvim-dap-virtual-text").setup({
 				enabled = true,

@@ -2,6 +2,7 @@
   ...
 }:
 {
+  #TODO: Refactor greeter
   flake.nixosModules.greetd =
     {
       ...
