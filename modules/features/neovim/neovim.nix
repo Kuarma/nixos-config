@@ -10,6 +10,7 @@
       ...
     }:
     let
+
       dotnet =
         with pkgs.dotnetCorePackages;
         combinePackages [
@@ -38,12 +39,14 @@
           luaPackages.tree-sitter-cli
 
           # Easy-Dotnet
-          self.packages.${pkgs.stdenv.hostPlatform.system}.easydotnet
+          self.packages.${pkgs.stdenv.hostPlatform.system}.easydotnet-pkg
+
+          # Resharper
+          self.packages.${pkgs.stdenv.hostPlatform.system}.resharper-pkg
 
           # Misc
           fzf
           ripgrep
-          vscode-langservers-extracted
         ];
 
         sessionVariables = {
@@ -57,41 +60,50 @@
   perSystem =
     {
       pkgs,
+      system,
       ...
     }:
+    let
+      stablePkgs = import inputs.nixpkgs-stable { inherit system; };
+    in
     {
       packages.nvim-pkg = inputs.wrapper-modules.wrappers.neovim.wrap {
         inherit pkgs;
 
         settings.config_directory = ./.;
 
-        runtimePkgs = with pkgs; [
-          # System utilities
-          ffmpeg-full
-          wl-clipboard
-          biber
-          miktex
-          zathura
-          xdotool
-          pstree
+        runtimePkgs =
+          with pkgs;
+          [
+            # System utilities
+            ffmpeg-full
+            wl-clipboard
+            biber
+            miktex
+            zathura
+            xdotool
+            pstree
 
-          # LSP servers
-          lua-language-server
+            # LSP servers
+            lua-language-server
 
-          # Formatters
-          oxfmt
-          tex-fmt
-          bibtex-tidy
+            # Formatters
+            oxfmt
+            tex-fmt
+            bibtex-tidy
 
-          # Markdown
-          marksman
+            # Markdown
+            marksman
 
-          # Spelling
-          codespell
+            # Dbg CSharp
+            netcoredbg
+          ]
+          ++ [
+            stablePkgs.vscode-langservers-extracted
 
-          # Dbg CSharp
-          netcoredbg
-        ];
+            # Spelling
+            stablePkgs.codespell
+          ];
 
         specs.init = {
           data = null;

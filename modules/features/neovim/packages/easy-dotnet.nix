@@ -9,7 +9,7 @@
       ...
     }:
     {
-      packages.easydotnet = pkgs.buildDotnetGlobalTool {
+      packages.easydotnet-pkg = pkgs.buildDotnetGlobalTool {
         pname = "easydotnet";
         version = "3.2.9";
         nugetName = "EasyDotnet";

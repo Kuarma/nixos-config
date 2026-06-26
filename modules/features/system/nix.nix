@@ -43,6 +43,7 @@
         nixfmt
         dockerfmt
         yamlfmt
+        csharpier
       ];
     };
 }

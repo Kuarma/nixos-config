@@ -25,7 +25,7 @@ return {
 					razor = {
 						enabled = true,
 						html = {
-							enabled = false,
+							enabled = true,
 						},
 					},
 				},

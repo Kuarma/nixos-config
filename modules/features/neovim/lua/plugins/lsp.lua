@@ -156,6 +156,8 @@ return {
 					tex = { "tex-fmt" },
 					plaintex = { "tex-fmt" },
 					bib = { "bibtex-tidy" },
+					cs = { lsp_format = "fallback" },
+					razor = { lsp_format = "fallback" },
 
 					["*"] = { "codespell" },
 					["_"] = { "trim_whitespace" },
@@ -171,6 +173,25 @@ return {
 				},
 			})
 
+			local function cleanup_code()
+				vim.system({
+					"jb",
+					"cleanupcode",
+					".",
+					"--profile=Built-in: Reformat Code",
+				}, { text = true }, function(obj)
+					vim.schedule(function()
+						if obj.code == 0 then
+							vim.cmd("checktime")
+							vim.notify("Cleanup complete")
+						else
+							vim.notify(obj.stderr, vim.log.levels.ERROR)
+						end
+					end)
+				end)
+			end
+
+			vim.keymap.set("n", "<leader>cf", cleanup_code, { desc = "JetBrains CleanupCode" })
 			vim.keymap.set("n", "<leader>F", function()
 				require("conform").format({ async = true })
 			end, { desc = "Format current buffer" })

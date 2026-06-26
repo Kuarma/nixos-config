@@ -1,4 +1,6 @@
 {
+  self,
+  inputs,
   ...
 }:
 {
@@ -8,12 +10,29 @@
       ...
     }:
     {
-      #TODO: Refactor this stupid config
-      #TODO: Add other addons and more policies
       programs.firefox = {
         enable = true;
-        package = pkgs.librewolf;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.librewolf-stable;
         policies = {
+          ManagedBookmarks = [
+            {
+              name = "Search";
+              children = [
+                {
+                  name = "NixOS";
+                  url = "https://search.nixos.org/";
+                }
+                {
+                  name = "Noogle";
+                  url = "https://noogle.dev/";
+                }
+              ];
+            }
+            {
+              name = "GitHub";
+              url = "https://github.com/";
+            }
+          ];
           DisableTelemetry = true;
           DisableFirefoxStudies = true;
           Preferences = {
@@ -42,5 +61,16 @@
       };
 
       environment.etc."firefox/policies/policies.json".target = "librewolf/policies/policies.json";
+    };
+  perSystem =
+    {
+      system,
+      ...
+    }:
+    let
+      stablePkgs = import inputs.nixpkgs-stable { inherit system; };
+    in
+    {
+      packages.librewolf-stable = stablePkgs.librewolf;
     };
 }
