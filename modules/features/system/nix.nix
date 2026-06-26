@@ -1,4 +1,5 @@
 {
+  self,
   ...
 }:
 {
@@ -11,6 +12,10 @@
       nix.settings.experimental-features = [
         "nix-command"
         "flakes"
+      ];
+
+      imports = [
+        self.nixosModules.overlays
       ];
 
       nixpkgs.config.allowUnfree = true;

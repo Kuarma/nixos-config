@@ -10,7 +10,6 @@
       ...
     }:
     let
-
       dotnet =
         with pkgs.dotnetCorePackages;
         combinePackages [

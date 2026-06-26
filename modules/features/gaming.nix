@@ -1,4 +1,5 @@
 {
+  self,
   inputs,
   ...
 }:
@@ -9,24 +10,14 @@
       ...
     }:
     {
-      imports = [
-        inputs.nix-gaming.nixosModules.pipewireLowLatency
-      ];
-
-      nixpkgs.config.allowUnfree = true;
-
       programs = {
         java.enable = true;
         gamemode.enable = true;
-        gamescope = {
-          enable = true;
-          capSysNice = false; # https://github.com/NixOS/nixpkgs/issues/523200
-        };
+        gamescope.enable = true;
         steam = {
           enable = true;
-          extraPackages = with pkgs; [
-            gamemode
-          ];
+          package = self.packages.${pkgs.stdenv.hostPlatform.system}.steam-stable;
+          fontPackages = [ ];
           extest.enable = true;
           protontricks.enable = true;
           remotePlay.openFirewall = true;
@@ -38,32 +29,24 @@
         };
       };
 
-      hardware.graphics = {
-        enable = true;
-        enable32Bit = true;
+      hardware = {
+        xone.enable = true;
+        xpadneo.enable = true;
+        graphics = {
+          enable = true;
+          enable32Bit = true;
+        };
       };
 
       environment = {
-        sessionVariables.MANGOHUD = "1";
+        sessionVariables.MANGOHUD = "0";
         systemPackages = with pkgs; [
-          steam-run
           mangohud
           er-patcher
         ];
       };
 
       services = {
-        pipewire = {
-          enable = true;
-          alsa.enable = true;
-          alsa.support32Bit = true;
-          pulse.enable = true;
-          lowLatency = {
-            enable = true;
-            quantum = 64;
-            rate = 48000;
-          };
-        };
         udev.packages = with pkgs; [
           game-devices-udev-rules
         ];
@@ -77,5 +60,20 @@
           "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         ];
       };
+    };
+
+  perSystem =
+    {
+      system,
+      ...
+    }:
+    let
+      stablePkgs = import inputs.nixpkgs-stable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+    {
+      packages.steam-stable = stablePkgs.steam;
     };
 }
